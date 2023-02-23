@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<data>
+<variable
+    name="category"
+    type="com.example.newsapp.model.category.Category" />
+</data>
+
+<androidx.cardview.widget.CardView
+    android:id="@+id/categoryCard"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context=".model.category.CategoryFragment"
+    cardColor="@{category.backgroundcolor}"
+    app:cardCornerRadius="12dp"
+    android:padding="8dp"
+    android:layout_margin="8dp"
+    >
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/categoryImage"
+            android:layout_width="120dp"
+            tools:src="@tools:sample/backgrounds/scenic"
+             image="@{category.imageid}"
+            android:layout_height="120dp"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+            />
+
+        <TextView
+            android:id="@+id/categoryName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:text="@{category.name}"
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+</layout>
