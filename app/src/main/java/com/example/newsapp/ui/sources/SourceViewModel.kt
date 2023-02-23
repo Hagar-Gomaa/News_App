@@ -1,6 +1,5 @@
-package com.example.newsapp.model.sources
+package com.example.newsapp.ui.sources
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.newsapp.Constans

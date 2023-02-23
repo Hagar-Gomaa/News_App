@@ -1,4 +1,4 @@
-package com.example.newsapp.model.category
+package com.example.newsapp.ui.category
 
 import android.widget.ImageView
 import androidx.cardview.widget.CardView

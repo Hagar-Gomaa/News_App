@@ -1,9 +1,8 @@
-package com.example.newsapp.model.news
+package com.example.newsapp.ui.news
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewbinding.ViewBinding
 import com.bumptech.glide.Glide
 import com.example.newsapp.R
 import com.example.newsapp.databinding.ArticleitemBinding

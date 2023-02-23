@@ -1,4 +1,4 @@
-package com.example.newsapp.model.category
+package com.example.newsapp.ui.category
 
 import com.example.newsapp.R
 
