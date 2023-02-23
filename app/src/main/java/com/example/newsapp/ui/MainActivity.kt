@@ -28,8 +28,7 @@ class MainActivity : AppCompatActivity() , CategoryFragment.OnItemClickCallBack 
         viewBinding =DataBindingUtil.setContentView(this,R.layout.activity_main)
         categoryFragment.onItemClickCallBack = this
 
-        supportFragmentManager.beginTransaction().replace(R.id.layoutContiner,categoryFragment).commit()
-
+        showFragment(categoryFragment)
         val toggle = ActionBarDrawerToggle(
             this, viewBinding.drawer, viewBinding.toolbar,
             R.string.navigation_drawer_open,
