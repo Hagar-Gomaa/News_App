@@ -1,4 +1,4 @@
-package com.example.newsapp.ui.news
+package com.example.newsapp.ui.articles
 
 import com.google.gson.annotations.SerializedName
 

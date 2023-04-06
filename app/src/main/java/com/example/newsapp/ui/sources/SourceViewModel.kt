@@ -2,34 +2,43 @@ package com.example.newsapp.ui.sources
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.newsapp.Constans
+import androidx.lifecycle.viewModelScope
 import com.example.newsapp.api.ApiManager
-import com.google.gson.Gson
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-
-class SourceViewModel :ViewModel(){
-var ListLiveData :MutableLiveData<List<SourcesItem?>> =MutableLiveData<List<SourcesItem?>>()
+import com.example.newsapp.repositoriesContract.SourceReosatory
+import com.example.newsapp.repositories.sources.SourcesRemoteDataSourceImp
+import com.example.newsapp.repositories.sources.SourcesRepositoryImp
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+@HiltViewModel
+class SourceViewModel @Inject constructor(val  sourcesRepo:SourceReosatory) :ViewModel(){
+var ListLiveData :MutableLiveData<List<SourcesItem?>?> =MutableLiveData<List<SourcesItem?>?>()
    var erorrmessage :MutableLiveData<String?> = MutableLiveData<String?>()
 
-    fun getSources(categoryid:String){
-     ApiManager.getApi().getSources(Constans.apiKey,categoryid).enqueue(object :Callback<SourcesResponse>{
-         override fun onResponse(
-             call: Call<SourcesResponse>,
-             response: Response<SourcesResponse>) = if (response.isSuccessful){
-             ListLiveData.value= response.body()?.sources
-         }else{
-                 val gson:Gson=Gson()
-                 val errorResponse= gson.fromJson(response.errorBody()?.string(),SourcesResponse::class.java)
-                       erorrmessage.value=errorResponse.message
 
-             }
+   fun getSources(categoryid:String){
 
-         override fun onFailure(call: Call<SourcesResponse>, t: Throwable) {
-                     erorrmessage.value=t.localizedMessage
-         }
-
-     })
+        viewModelScope.launch{
+            val data = sourcesRepo.getSourceByCategoryId(categoryid)
+            ListLiveData.value=data       }
     }
 }
+/**
+ *  ApiManager.getApi().getSources(Constans.apiKey,categoryid).enqueue(object :Callback<SourcesResponse>{
+override fun onResponse(
+call: Call<SourcesResponse>,
+response: Response<SourcesResponse>) = if (response.isSuccessful){
+ListLiveData.value= response.body()?.sources
+}else{
+val gson:Gson=Gson()
+val errorResponse= gson.fromJson(response.errorBody()?.string(),SourcesResponse::class.java)
+erorrmessage.value=errorResponse.message
+
+}
+
+override fun onFailure(call: Call<SourcesResponse>, t: Throwable) {
+erorrmessage.value=t.localizedMessage
+}
+
+})
+ */

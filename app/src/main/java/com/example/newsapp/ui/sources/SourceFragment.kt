@@ -5,16 +5,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.example.newsapp.R
 import com.example.newsapp.databinding.FragmentSourceBinding
-import com.example.newsapp.ui.news.AricleFragment
+import com.example.newsapp.ui.articles.AricleFragment
 import com.google.android.material.tabs.TabLayout
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
+
+@AndroidEntryPoint
 class SourceFragment : Fragment() {
 lateinit var viewBinding: FragmentSourceBinding
-lateinit var viewModel: SourceViewModel
+  val viewModel: SourceViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -23,11 +29,6 @@ lateinit var viewModel: SourceViewModel
         return viewBinding.root
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel=ViewModelProvider(this).get(SourceViewModel::class.java)
-
-    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         subscribeViewmodel()
@@ -58,8 +59,10 @@ lateinit var viewModel: SourceViewModel
     }
 
     private fun subscribeViewmodel() {
-        viewModel.getSources(categoryid)
-        viewModel.run { ListLiveData.observe(viewLifecycleOwner,object :Observer<List<SourcesItem?>>{
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.getSources(categoryid!!)
+        }
+        viewModel.run { ListLiveData.observe(viewLifecycleOwner,object :Observer<List<SourcesItem?>?>{
             override fun onChanged(sources: List<SourcesItem?>?) {
                 bindSourcesToTablayout(sources)            }
 
@@ -74,7 +77,7 @@ lateinit var viewModel: SourceViewModel
            tab.tag=sourcesItem
            viewBinding.tablayout.addTab(tab)
        }
-    }lateinit var categoryid:String
+    } var categoryid:String ?=null
 companion object{
     fun grtInstance(categoryid:String):SourceFragment{
         var sourceFragment=SourceFragment()
