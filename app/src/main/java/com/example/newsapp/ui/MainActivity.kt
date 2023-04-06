@@ -3,14 +3,15 @@ package com.example.newsapp.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.databinding.DataBindingComponent
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 
 import com.example.newsapp.R
 import com.example.newsapp.databinding.ActivityMainBinding
-import com.example.newsapp.ui.category.CategoryFragment
-import com.example.newsapp.ui.settings.SettingsFragment
-import com.example.newsapp.ui.sources.SourceFragment
+import com.example.newsapp.model.category.CategoryFragment
+import com.example.newsapp.model.settings.SettingsFragment
+import com.example.newsapp.model.sources.SourceFragment
 
 class MainActivity : AppCompatActivity() , CategoryFragment.OnItemClickCallBack {
     override fun onItemClick(categoryid: String) {

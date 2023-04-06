@@ -1,6 +1,7 @@
-package com.example.newsapp.ui.category
+package com.example.newsapp.model.category
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 

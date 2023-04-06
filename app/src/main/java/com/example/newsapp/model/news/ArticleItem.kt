@@ -1,6 +1,6 @@
-package com.example.newsapp.ui.news
+package com.example.newsapp.model.news
 
-import com.example.newsapp.ui.sources.SourcesItem
+import com.example.newsapp.model.sources.SourcesItem
 import com.google.gson.annotations.SerializedName
 
 data class ArticleItem(

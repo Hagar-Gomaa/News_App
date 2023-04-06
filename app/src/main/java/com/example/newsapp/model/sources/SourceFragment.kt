@@ -1,4 +1,4 @@
-package com.example.newsapp.ui.sources
+package com.example.newsapp.model.sources
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.newsapp.R
 import com.example.newsapp.databinding.FragmentSourceBinding
-import com.example.newsapp.ui.news.AricleFragment
+import com.example.newsapp.model.news.AricleFragment
 import com.google.android.material.tabs.TabLayout
 
 class SourceFragment : Fragment() {

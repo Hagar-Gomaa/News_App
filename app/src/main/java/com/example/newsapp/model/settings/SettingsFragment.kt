@@ -1,4 +1,4 @@
-package com.example.newsapp.ui.settings
+package com.example.newsapp.model.settings
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
