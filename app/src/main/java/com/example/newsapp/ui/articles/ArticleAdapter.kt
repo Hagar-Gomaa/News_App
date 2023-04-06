@@ -1,4 +1,4 @@
-package com.example.newsapp.ui.news
+package com.example.newsapp.ui.articles
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -24,7 +24,7 @@ class ArticleAdapter(var ArticleList: List<ArticleItem?>?):RecyclerView.Adapter<
       holder.bind(item!!)
 
         Glide.with(holder.viewBinding.root)
-            .load(item?.urlToImage)
+            .load(item.urlToImage)
             .placeholder(R.drawable.ic_launcher_foreground)
             .into(holder.viewBinding.sourceImage);
     }

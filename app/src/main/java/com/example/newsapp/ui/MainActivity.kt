@@ -11,7 +11,9 @@ import com.example.newsapp.databinding.ActivityMainBinding
 import com.example.newsapp.ui.category.CategoryFragment
 import com.example.newsapp.ui.settings.SettingsFragment
 import com.example.newsapp.ui.sources.SourceFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() , CategoryFragment.OnItemClickCallBack {
     override fun onItemClick(categoryid: String) {
         showSourceFragment(categoryid)
