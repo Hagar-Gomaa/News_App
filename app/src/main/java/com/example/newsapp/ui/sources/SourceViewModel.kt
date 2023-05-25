@@ -8,6 +8,7 @@ import com.example.newsapp.repositoriesContract.SourceReosatory
 import com.example.newsapp.repositories.sources.SourcesRemoteDataSourceImp
 import com.example.newsapp.repositories.sources.SourcesRepositoryImp
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 @HiltViewModel
@@ -16,13 +17,24 @@ var ListLiveData :MutableLiveData<List<SourcesItem?>?> =MutableLiveData<List<Sou
    var erorrmessage :MutableLiveData<String?> = MutableLiveData<String?>()
 
 
-   fun getSources(categoryid:String){
+   fun getSources(categoryid:String) {
+       val mflow = flow<List<SourcesItem?>?> {
+           emit(sourcesRepo.getSourceByCategoryId(categoryid))
+       }
+ viewModelScope.launch {
+     mflow.collect{
+            ListLiveData.value=it
+     }
+ }
 
-        viewModelScope.launch{
-            val data = sourcesRepo.getSourceByCategoryId(categoryid)
-            ListLiveData.value=data       }
-    }
+   }
 }
+
+//        viewModelScope.launch{
+//            val data = sourcesRepo.getSourceByCategoryId(categoryid)
+//            ListLiveData.value=data       }
+//    }
+
 /**
  *  ApiManager.getApi().getSources(Constans.apiKey,categoryid).enqueue(object :Callback<SourcesResponse>{
 override fun onResponse(
